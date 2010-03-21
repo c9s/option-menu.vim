@@ -4,10 +4,10 @@
 
 
 fun! SetOption(frombuf,cmd)
-  let mbufnr = bufnr('%')
-  exec a:frombuf . 'wincmd w'
+  let a = bufnr('%')
+  exec winbufnr(a:frombuf) . 'wincmd w'
   exec a:cmd
-  wincmd w
+  exec winbufnr(a) . 'wincmd w'
 endf
 
 fun! s:OptionMenuBufferToggle()
@@ -54,7 +54,6 @@ fun! s:OptionMenuBufferToggle()
 
   cal m.render()
 endf
-
 com! OptionMenu  :cal s:OptionMenuBufferToggle()
-
-:OptionMenu
+" OptionMenu
+nmap <leader>o :OptionMenu<CR>
