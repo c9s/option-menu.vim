@@ -2,7 +2,6 @@
 " Author:   Cornelius
 " Version:  0.1
 
-
 fun! SetOption(frombuf,cmd)
   let a = bufnr('%')
   exec winbufnr(a:frombuf) . 'wincmd w'
@@ -37,6 +36,17 @@ fun! s:OptionMenuBufferToggle()
       \'close':0,
       \'exe': function('SetOption') , 'args': [ frombuf , 'set et!'] })
 
+
+  cal m.createChild({ 
+      \'label': 'Toggle ListChar' ,
+      \'close':0,
+      \'exe': function('SetOption') , 'args': [ frombuf , 'set list!'] })
+
+  cal m.createChild({ 
+      \'label': 'Make vimrc' ,
+      \'close':0,
+      \'exe': function('SetOption') , 'args': [ frombuf , 'mkvimrc'] })
+
   cal m.createChild({ 
       \'label': 'Syntax On' ,
       \'close':0,
@@ -47,10 +57,6 @@ fun! s:OptionMenuBufferToggle()
       \'close':0,
       \'exe': function('SetOption') , 'args': [ frombuf , 'syntax off'] })
 
-  cal m.createChild({ 
-      \'label': 'Toggle ListChar' ,
-      \'close':0,
-      \'exe': function('SetOption') , 'args': [ frombuf , 'set list!'] })
 
   cal m.render()
 endf
